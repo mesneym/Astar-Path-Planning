@@ -135,28 +135,19 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
     while(len(q)>0):
         _,_,currentNode = heapq.heappop(q)
 
-        if(distance(startPosition,goalPosition)< 1.5):
+        if(distance(currentNode.state[0:2],goalPosition)<= 3*threshDistance):
             sol = printPath(currentNode)
             return [True,sol]
        
-
-        print("=============================")
-        print(currentNode.state)
-        if(currentNode.parent):
-            print(currentNode.parent.state)
-        print("==============================")
-        if(count > 10):
-            break
-        print("")
         for theta in range(12): 
             x,y,t    = currentNode.state
             newOrientation = (threshAngle*theta + t)%360
             newPosX = threshDistance*math.cos(newOrientation) + x 
             newPosY = threshDistance*math.sin(newOrientation) + y
             newState = np.array(normalize([newPosX,newPosY],newOrientation))
-
+              
             s = str(newState[0])+str(newState[1]) + str(newState[2])
-            
+           
             if(s not in nodesExplored):
                 if(isSafe(newState,1,radiusClearance)):
                     newCostToCome = currentNode.costToCome + threshDistance 
@@ -167,7 +158,6 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
 
                     heapq.heappush(q,(newNode.cost,count,newNode))
                     count += 1
-
             else:
                 if(nodesExplored[s].cost > currentNode.cost + threshDistance + distance([newPosX,newPosY],[gx,gy])):
                     nodesExplored[s].costToCome = currentNode.costToCome + threshDistance 
@@ -175,7 +165,6 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
                     nodesExplored[s].parent = currentNode
                     
     return  [False,None] 
-
 
 
 if __name__ == "__main__":
@@ -186,8 +175,8 @@ if __name__ == "__main__":
     q = []
     startPosition = np.array([0,0])
     startOrientation = 0
-    goalPosition = np.array([5,5])
-    print(generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,4))
+    goalPosition = np.array([20,30])
+    print(generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,0.5,30))
 
 
 
