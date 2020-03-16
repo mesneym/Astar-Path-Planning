@@ -38,10 +38,10 @@ radius = 0
 s1 = 5
 s2 = 200-5
 s3 = 0
-g1 = 100
-g2 = 200-140
+g1 = 295 
+g2 = 200-195
 
-threshDistance = 20
+threshDistance = 5
 threshAngle = 30
 
 res = 1 #resolution of grid 
@@ -68,7 +68,7 @@ gameDisplay = pygame.display.set_mode((size_x*scale,size_y*scale))
 
 
 ############################################################
-#                Display Obstacles
+#                 Display Obstacles
 ############################################################
 circlePts = [225,50,25]
 
@@ -92,7 +92,6 @@ pygame.draw.ellipse(gameDisplay,red,scale*ellipsePts)
 pygame.draw.polygon(gameDisplay,red,scale*rectPts)
 
 
-
 ############################################################
 #          Draw Explored Nodes and solution path
 ############################################################
@@ -111,7 +110,7 @@ if(not isSafe(startPosition,res,clearance+radius) or not isSafe(goalPosition,res
     pygame.time.delay(2000)
 
 else:
-    success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,5)
+    success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance)
 
     #############################################
     #      Drawing 
@@ -133,23 +132,22 @@ else:
                     x2,y2 = ptParent*scale*res
 
                     #draw explored nodes
-                    pygame.draw.line(gameDisplay,blue,(x2,y2),(x,y),1)
-                    pygame.draw.circle(gameDisplay,white,(int(x),int(y)),2)
-                    pygame.draw.circle(gameDisplay,white,(int(x2),int(y2)),2)
+                    pygame.draw.line(gameDisplay,white,(x2,y2),(x,y),1)
+                    pygame.draw.circle(gameDisplay,green,(int(x),int(y)),2)
+                    pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
 
 
+                #draw start and goal locations
+                pygame.draw.rect(gameDisplay,blue,(startPosition[0]*res*scale,startPosition[1]*res*scale, \
+                                 res*scale,res*scale))
 
-                    #draw start and goal locations
-                    pygame.draw.rect(gameDisplay,blue,(startPosition[0]*res*scale,startPosition[1]*res*scale, \
-                                     res*scale,res*scale))
+                pygame.draw.circle(gameDisplay,blue,(int(goalPosition[0]*res*scale),int(goalPosition[1]*res*scale)), \
+                                  3*threshDistance*res*scale)
 
-                    pygame.draw.circle(gameDisplay,blue,(int(goalPosition[0]*res*scale),int(goalPosition[1]*res*scale)), \
-                                      3*threshDistance*res*scale)
+                pygame.draw.rect(gameDisplay,white,(goalPosition[0]*res*scale,goalPosition[1]*res*scale, \
+                                 res*scale,res*scale))
 
-                    pygame.draw.rect(gameDisplay,white,(goalPosition[0]*res*scale,goalPosition[1]*res*scale, \
-                                     res*scale,res*scale))
-
-                    pygame.display.update()
+                pygame.display.update()
 
            
             # draw solution path
