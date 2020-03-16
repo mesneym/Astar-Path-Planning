@@ -38,10 +38,10 @@ radius = 0
 s1 = 5
 s2 = 200-5
 s3 = 0
-g1 = 295
-g2 = 200-95
+g1 = 100
+g2 = 200-140
 
-threshDistance = 5
+threshDistance = 20
 threshAngle = 30
 
 res = 1 #resolution of grid 
@@ -128,13 +128,15 @@ else:
             for s in nodesExplored:
                 if(nodesExplored[s].parent):
                     pt = nodesExplored[s].state[0:2]
-                    ptParent = nodesExplored[s].state[0:2]
+                    ptParent = nodesExplored[s].parent.state[0:2]
                     x,y = pt*scale*res
                     x2,y2 = ptParent*scale*res
 
                     #draw explored nodes
-                    pygame.draw.line(gameDisplay,blue,(x,y),(x2,y2),5)
-                    # pygame.draw.circle(gameDisplay,white,(int(x),int(y)),2)
+                    pygame.draw.line(gameDisplay,blue,(x2,y2),(x,y),1)
+                    pygame.draw.circle(gameDisplay,white,(int(x),int(y)),2)
+                    pygame.draw.circle(gameDisplay,white,(int(x2),int(y2)),2)
+
 
 
                     #draw start and goal locations
@@ -154,7 +156,7 @@ else:
             for i in range(len(solution)-1,-1,-1):
                 pt = solution[i][0:2]
                 x,y = pt[0]*scale*res,pt[1]*scale*res
-                pygame.draw.circle(gameDisplay,yellow,(int(x),int(y)),5)
+                pygame.draw.circle(gameDisplay,red,(int(x),int(y)),3)
                 pygame.display.update()
             pygame.time.delay(2000)
             draw = False
