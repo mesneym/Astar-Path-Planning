@@ -3,13 +3,13 @@ import numpy as np
 from astar_point_rigid import *
 
 
+def triangleCoordinates(startPt,goalPt):
+    pass
+
 
 ###################################################
 #                  Parameters 
 ###################################################
-A = np.array([[1,0],[0,1],[-1,0],[0,-1],[1,1],[-1,-1],[1,-1],[-1,1]])
-costIncrement = [1.0,1.0,1.0,1.0,math.sqrt(2),math.sqrt(2),math.sqrt(2),math.sqrt(2)]
-
 clearance = radius = 0
 # print('Enter Type of robot\n 1 -> point robot \n 2 -> rigid robot \
         # \n Enter number :')
