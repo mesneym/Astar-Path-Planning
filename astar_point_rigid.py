@@ -103,12 +103,12 @@ def printPath(node):
     return l
 
 
-def normalize(startPosition,startOrientation,threshDistance=0.5, threshOrientation=30):
+def normalize(startPosition,startOrientation,threshDistance=0.5, threshAngle=30):
     x,y = startPosition
     t = startOrientation
     x = round(x/threshDistance)* threshDistance
     y = round(y/threshDistance)* threshDistance
-    t = round(t/threshOrientation) * threshOrientation
+    t = round(t/threshAngle) * threshAngle
     return [x,y,t] 
 
 
@@ -121,12 +121,12 @@ def distance(startPosition,goalPosition):
 #generates optimal path for robot
 def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance = 0.5,threshAngle = 30,radiusClearance=0):
     #normalize goal and start positions
-    sx,sy,st = normalize(startPosition,startOrientation)
-    gx,gy,gt = normalize(goalPosition,0) 
+    sx,sy,st = normalize(startPosition,startOrientation,threshDistance,threshAngle)
+    gx,gy,gt = normalize(goalPosition,0,threshDistance,threshAngle) 
 
     #Initializing root node
     key = str(sx) + str(sy) + str(st)
-    root = Node([sx,sy,st],0.0,0.0,None)
+    root = Node(np.array([sx,sy,st]),0.0,0.0,None)
     nodesExplored[key] = root
 
     count = 1
@@ -144,8 +144,7 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
             newOrientation = (threshAngle*theta + t)%360
             newPosX = threshDistance*math.cos(newOrientation) + x 
             newPosY = threshDistance*math.sin(newOrientation) + y
-            newState = np.array(normalize([newPosX,newPosY],newOrientation))
-              
+            newState = np.array(normalize([newPosX,newPosY],newOrientation,threshDistance,threshAngle))
             s = str(newState[0])+str(newState[1]) + str(newState[2])
            
             if(s not in nodesExplored):
