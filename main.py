@@ -19,37 +19,37 @@ def triangleCoordinates(start, end, triangleSize = 5):
 #                  Parameters 
 ###################################################
 clearance = radius = 0
-# print('Enter Type of robot\n 1 -> point robot \n 2 -> rigid robot \
-        # \n Enter number :')
+print('Enter Type of robot\n 1 -> point robot \n 2 -> rigid robot \
+        \n Enter number :')
 
-# robotType = int(input())
+robotType = int(input())
 
-# if(robotType == 2):
-    # print("Enter cleareance")
-    # clearance = int(input())
-    # print("Enter radius")
-    # radius = int(input())
+if(robotType == 2):
+    print("Enter cleareance")
+    clearance = int(input())
+    print("Enter radius")
+    radius = int(input())
 
-# print('Enter start location s1')
-# s1 = int(input())
-# print('Enter start location s2')
-# s2 = 200-int(input())
+print('Enter start location s1')
+s1 = int(input())
+print('Enter start location s2')
+s2 = 200-int(input())
 
-# print('Enter goal location g1')
-# g1 = int(input())
-# print('Enter goal location g2')
-# g2 = 200-int(input())
+print('Enter goal location g1')
+g1 = int(input())
+print('Enter goal location g2')
+g2 = 200-int(input())
 
-robotType= 1
-clearance = 0
-radius = 0
-s1 = 5
-s2 = 200-5
-s3 = 0
-g1 = 295 
-g2 = 200-195
+# robotType= 2
+# clearance = 5
+# radius = 5
+# s1 = 5
+# s2 = 200-5
+# s3 = 0
+# g1 = 295 
+# g2 = 200-195
 
-threshDistance = 2
+threshDistance = 5
 threshAngle = 30
 
 res = 1 #resolution of grid 
@@ -118,7 +118,7 @@ if(not isSafe(startPosition,res,clearance+radius) or not isSafe(goalPosition,res
     pygame.time.delay(2000)
 
 else:
-    success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance)
+    success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance,threshAngle,clearance+radius)
 
     #############################################
     #      Drawing 
@@ -141,10 +141,10 @@ else:
 
                     #draw explored nodes
                     pygame.draw.line(gameDisplay,white,(x2,y2),(x,y),1)
-                    # pygame.draw.circle(gameDisplay,green,(int(x),int(y)),2)
+                    pygame.draw.circle(gameDisplay,green,(int(x),int(y)),4)
                     # pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
-                    triangle = triangleCoordinates([x2,y2],[x,y],4)
-                    pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
+                    # triangle = triangleCoordinates([x2,y2],[x,y],4)
+                    # pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
 
                 #draw start and goal locations
                 pygame.draw.rect(gameDisplay,blue,(startPosition[0]*res*scale,startPosition[1]*res*scale, \
@@ -163,9 +163,9 @@ else:
             for i in range(len(solution)-1,-1,-1):
                 pt = solution[i][0:2]
                 x,y = pt[0]*scale*res,pt[1]*scale*res
-                pygame.draw.circle(gameDisplay,red,(int(x),int(y)),3)
+                pygame.draw.circle(gameDisplay,red,(int(x),int(y)),4)
                 pygame.display.update()
-            pygame.time.delay(40000)
+            pygame.time.delay(2000)
             draw = False
 
     else:
