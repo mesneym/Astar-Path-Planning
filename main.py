@@ -3,9 +3,17 @@ import numpy as np
 from astar_point_rigid import *
 
 
-def triangleCoordinates(startPt,goalPt):
-    pass
+def triangleCoordinates(start, end, triangleSize = 5):
+    
+    rotation = (math.atan2(start[1] - end[1], end[0] - start[0])) + math.pi/2
+    # print(math.atan2(start[1] - end[1], end[0] - start[0]))
+    rad = math.pi/180
 
+    coordinateList = np.array([[end[0],end[1]],
+                              [end[0] + triangleSize * math.sin(rotation - 165*rad), end[1] + triangleSize * math.cos(rotation - 165*rad)],
+                              [end[0] + triangleSize * math.sin(rotation + 165*rad), end[1] + triangleSize * math.cos(rotation + 165*rad)]])
+
+    return coordinateList
 
 ###################################################
 #                  Parameters 
@@ -41,7 +49,7 @@ s3 = 0
 g1 = 295 
 g2 = 200-195
 
-threshDistance = 5
+threshDistance = 2
 threshAngle = 30
 
 res = 1 #resolution of grid 
@@ -133,9 +141,10 @@ else:
 
                     #draw explored nodes
                     pygame.draw.line(gameDisplay,white,(x2,y2),(x,y),1)
-                    pygame.draw.circle(gameDisplay,green,(int(x),int(y)),2)
-                    pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
-
+                    # pygame.draw.circle(gameDisplay,green,(int(x),int(y)),2)
+                    # pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
+                    triangle = triangleCoordinates([x2,y2],[x,y],4)
+                    pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
 
                 #draw start and goal locations
                 pygame.draw.rect(gameDisplay,blue,(startPosition[0]*res*scale,startPosition[1]*res*scale, \
@@ -156,7 +165,7 @@ else:
                 x,y = pt[0]*scale*res,pt[1]*scale*res
                 pygame.draw.circle(gameDisplay,red,(int(x),int(y)),3)
                 pygame.display.update()
-            pygame.time.delay(2000)
+            pygame.time.delay(40000)
             draw = False
 
     else:
