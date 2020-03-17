@@ -52,7 +52,7 @@ threshDistance = stepSize
 # Angle between actions
 threshAngle = 30
 
-res = 1 #resolution of grid 
+res = 1  #resolution of grid 
 scale = 3 #scale of grid
 
 
@@ -120,15 +120,14 @@ if(not isSafe(startPosition,res,clearance+radius) or not isSafe(goalPosition,res
 else:
     print('Exploring nodes...')
     success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance,threshAngle,clearance+radius)
-    print('Optimal path found')
-    # End of simulation
-    endTime= time.time()
-    print("Total time taken for exploring nodes "+ str(endTime-startTime) +" seconds.")
 
     #############################################
     #      Drawing 
     #############################################
     if(success):
+        print('Optimal path found')
+        endTime= time.time()
+        print("Total time taken for exploring nodes "+ str(endTime-startTime) +" seconds.")
         draw = True
         while draw:
             for event in pygame.event.get():

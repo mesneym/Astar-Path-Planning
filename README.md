@@ -59,6 +59,7 @@ For worst case time taken for rigid robot is 128.9800910949707 seconds.
 
 ### Sample video output
 ![Alt Text](https://media.giphy.com/media/Tjw8FK1NQO2tQqL6Hu/giphy.gif)
+<!--![Alt Text](./Data/video2.mp4)-->
 
 ### Note
 For small distances, after finding the goal point the pygame will immediately start the simulation and reach the goal point. The goal exploration is not clearly see for small distances. For large distances it is clearly seen.
