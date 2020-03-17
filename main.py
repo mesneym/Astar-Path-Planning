@@ -143,7 +143,7 @@ else:
                     pygame.draw.line(gameDisplay,white,(x2,y2),(x,y),1)
                     pygame.draw.circle(gameDisplay,green,(int(x),int(y)),4)
                     # pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
-                    # triangle = triangleCoordinates([x2,y2],[x,y],4)
+                    # triangle = triangleCoordinates([x2,y2],[x,y],5)
                     # pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
 
                 #draw start and goal locations
@@ -165,7 +165,7 @@ else:
                 x,y = pt[0]*scale*res,pt[1]*scale*res
                 pygame.draw.circle(gameDisplay,red,(int(x),int(y)),4)
                 pygame.display.update()
-            pygame.time.delay(2000)
+            pygame.time.delay(4000)
             draw = False
 
     else:
