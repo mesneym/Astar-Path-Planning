@@ -2,6 +2,25 @@
 ### Description
 Implementation of A* algorithm is tested on a obstacle space for both rigid and point robot. The robot will maneuver through the obstacle space to reach the goal point with minimum cost. For rigid robot, the dimension of the robot is also considered and world space is converted into configuration space by increasing the scale of the obstacles and converting the rigid robot into point robot. The map is not discretized and the robot will move in constant step size taken as input from the user.
 
+
+![](./Data/problem.png)
+
+### Cost Map
+The Map of the workspace is discretized to some number of rows and columns and the cost from moving one location to another is illustrated by the diagram below.
+
+![](./Data/costmap.png)
+
+### Point Vs Rigid Robot
+A point robot is a theoretical construct and has no dimensions. To somewhat account for this, we create a 2D rigid robot which  depicts  a circle with some given radius. To make the robot safe whilst navigating, we specify a parameter(clearance) which indicates 
+a safety distance, a measure of how far a robot can be close to an obstacle without compromising its safety.
+
+![](./Data/pointvsrigid.png)
+<p align="center">
+  <img width="300" height="300" src="./Data/clearance.png">
+</p>
+
+
+
 ### Obstacle space
 ![Obstacle space](images/obstacle_space.JPG)
 ### Actions
