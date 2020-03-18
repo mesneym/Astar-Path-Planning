@@ -5,10 +5,7 @@ Implementation of A* algorithm is tested on a obstacle space for both rigid and 
 
 ![](./Data/problem.png)
 
-### Cost Map
-The Map of the workspace is discretized to some number of rows and columns and the cost from moving one location to another is illustrated by the diagram below.
 
-![](./Data/costmap.png)
 
 ### Point Vs Rigid Robot
 A point robot is a theoretical construct and has no dimensions. To somewhat account for this, we create a 2D rigid robot which  depicts  a circle with some given radius. To make the robot safe whilst navigating, we specify a parameter(clearance) which indicates 
