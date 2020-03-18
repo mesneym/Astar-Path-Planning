@@ -58,7 +58,7 @@ Total time taken 128.9800910949707
 For worst case time taken for rigid robot is 128.9800910949707 seconds.
 
 ### Sample video output
-![Alt Text](https://media.giphy.com/media/Tjw8FK1NQO2tQqL6Hu/giphy.gif)
+![Alt Text](./Data/video1.gif)
 
 For a step size of 5 we have the following
 ![Alt Text](./Data/video2.gif)
