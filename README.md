@@ -20,12 +20,6 @@ a safety distance, a measure of how far a robot can be close to an obstacle with
 </p>
 
 
-
-### Obstacle space
-![Obstacle space](images/obstacle_space.JPG)
-### Actions
-The robot can move in 12 directions. The angle between the directions is 30 degrees..
-
 ### Dependencies 
 1. python -version 3
 2. pygame
