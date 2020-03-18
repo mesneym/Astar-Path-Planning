@@ -1,10 +1,7 @@
 # A*-algorithm implementation for Rigid and Point Robot
 ### Description
-Implementation of A* algorithm is tested on a obstacle space for both rigid and point robot. The robot will maneuver through the obstacle space to reach the goal point with minimum cost. For rigid robot, the dimension of the robot is also considered and world space is converted into configuration space by increasing the scale of the obstacles and converting the rigid robot into point robot. The map is not discretized and the robot will move in constant step size taken as input from the user.
-
-
+The aim of this project is to allow a point or rigid robot to move in an environment from some specified start location to a goal location through some optimal path accounted for by the use of A\* algorithm. A brief diagram of depicting the problem is shown below
 ![](./Data/problem.png)
-
 
 
 ### Point Vs Rigid Robot
