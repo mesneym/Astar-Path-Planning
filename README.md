@@ -65,7 +65,7 @@ Cost took to reach the goal is: 395.64675298172733
 Backtracking...
 Total time taken 128.9800910949707
 ```
-For worst case time taken for rigid robot is 128.9800910949707 seconds.
+
 
 ### Sample video output
 ![Alt Text](./Data/video1.gif)
@@ -73,7 +73,6 @@ For worst case time taken for rigid robot is 128.9800910949707 seconds.
 For a step size of 5 we have the following
 ![Alt Text](./Data/video2.gif)
 
-### Note
-For small distances, after finding the goal point the pygame will immediately start the simulation and reach the goal point. The goal exploration is not clearly see for small distances. For large distances it is clearly seen.
+
 
 
