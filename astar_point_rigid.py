@@ -40,8 +40,8 @@ def isValidWorkspace(pt,r = 1,radiusClearance=0): #To be modified
                                     radiusClearance/r * (1+math.sqrt(((Y[5]-Y[4])/(X[5]-X[4]))**2))   and \
                        (y-Y[5]) <= ((Y[6]-Y[5])/(X[6]-X[5]))*(x-X[5]) +                                   \
                                     radiusClearance/r * (1+math.sqrt(((Y[6]-Y[5])/(X[6]-X[5]))**2))   and \
-                       (y-Y[6]) <= ((Y[3]-Y[6])/(X[3]-X[6]))*(x-X[6]) +                                   \
-                                    radiusClearance/r * (1+math.sqrt(((Y[3]-Y[6])/(X[3]-X[6]))**2))   
+                       (y-Y[6]) <= ((Y[3]-Y[6])/(X[3]-X[6]))*(x-X[6]) #+                                   \
+                                    #radiusClearance/r * (1+math.sqrt(((Y[3]-Y[6])/(X[3]-X[6]))**2))   
 
 
     ptInNonConvex = nonConvexRegion1 or nonConvexRegion2
