@@ -111,7 +111,7 @@ def normalize(startPosition,startOrientation,threshDistance=0.5, threshAngle=30)
     t = round(t/threshAngle) * threshAngle
     return [x,y,t] 
 
-
+# Calculating the Euclidean distance
 def distance(startPosition,goalPosition):
     sx,sy = startPosition
     gx,gy = goalPosition
