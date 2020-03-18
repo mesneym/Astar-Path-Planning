@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
 from astar_point_rigid import *
+import time
 
 
 def triangleCoordinates(start, end, triangleSize = 5):
@@ -30,6 +31,8 @@ if(robotType == 2):
     print("Enter radius")
     radius = int(input())
 
+print('Enter step size of the robot')
+stepSize = int(input())
 print('Enter start location s1')
 s1 = int(input())
 print('Enter start location s2')
@@ -40,16 +43,13 @@ g1 = int(input())
 print('Enter goal location g2')
 g2 = 200-int(input())
 
-# robotType= 2
-# clearance = 5
-# radius = 5
-# s1 = 5
-# s2 = 200-5
-# s3 = 0
-# g1 = 295 
-# g2 = 200-195
+# Start time of simulation
+startTime = time.time()
 
-threshDistance = 5
+# Step size of movement 
+threshDistance = stepSize
+
+# Angle between actions
 threshAngle = 30
 
 res = 1 #resolution of grid 
@@ -118,7 +118,12 @@ if(not isSafe(startPosition,res,clearance+radius) or not isSafe(goalPosition,res
     pygame.time.delay(2000)
 
 else:
+    print('Exploring nodes...')
     success,solution = generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,threshDistance,threshAngle,clearance+radius)
+    print('Optimal path found')
+    # End of simulation
+    endTime= time.time()
+    print("Total time taken for exploring nodes "+ str(endTime-startTime) +" seconds.")
 
     #############################################
     #      Drawing 
@@ -141,17 +146,17 @@ else:
 
                     #draw explored nodes
                     pygame.draw.line(gameDisplay,white,(x2,y2),(x,y),1)
-                    pygame.draw.circle(gameDisplay,green,(int(x),int(y)),4)
+                    # pygame.draw.circle(gameDisplay,green,(int(x),int(y)),4)
                     # pygame.draw.circle(gameDisplay,green,(int(x2),int(y2)),2)
-                    # triangle = triangleCoordinates([x2,y2],[x,y],5)
-                    # pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
+                    triangle = triangleCoordinates([x2,y2],[x,y],5)
+                    pygame.draw.polygon(gameDisplay, green,[tuple(triangle[0]),tuple(triangle[1]),tuple(triangle[2])])
 
                 #draw start and goal locations
                 pygame.draw.rect(gameDisplay,blue,(startPosition[0]*res*scale,startPosition[1]*res*scale, \
                                  res*scale,res*scale))
 
                 pygame.draw.circle(gameDisplay,blue,(int(goalPosition[0]*res*scale),int(goalPosition[1]*res*scale)), \
-                                  3*threshDistance*res*scale)
+                                  math.floor(3*1.5*res*scale))
 
                 pygame.draw.rect(gameDisplay,white,(goalPosition[0]*res*scale,goalPosition[1]*res*scale, \
                                  res*scale,res*scale))

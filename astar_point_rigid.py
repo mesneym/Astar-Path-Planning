@@ -135,7 +135,7 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
     while(len(q)>0):
         _,_,currentNode = heapq.heappop(q)
 
-        if(distance(currentNode.state[0:2],goalPosition)<= 3*threshDistance):
+        if(distance(currentNode.state[0:2],goalPosition)<= 3*1.5):
             sol = printPath(currentNode)
             return [True,sol]
         
