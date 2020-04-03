@@ -149,8 +149,8 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
            
             if(s not in nodesExplored):
                 if(isSafe(newState,1,radiusClearance)):
-                    newCostToCome = currentNode.costToCome + threshDistance 
-                    newCost = newCostToCome + distance([newPosX,newPosY],[gx,gy])
+                    newCostToCome = currentNode.costToCome + distance([newState[0],newState[1]],[x,y]) 
+                    newCost = newCostToCome + distance([newState[0],newState[1]],[gx,gy])
 
                     newNode = Node(newState,newCost,newCostToCome,currentNode)
                     nodesExplored[s] = newNode
@@ -158,9 +158,9 @@ def generatePath(q,startPosition,startOrientation,goalPosition,nodesExplored,thr
                     heapq.heappush(q,(newNode.cost,count,newNode))
                     count += 1
             else:
-                if(nodesExplored[s].cost > currentNode.costToCome + threshDistance + distance([newPosX,newPosY],[gx,gy])):
-                    nodesExplored[s].costToCome = currentNode.costToCome + threshDistance 
-                    nodesExplored[s].cost = nodesExplored[s].costToCome + distance([newPosX,newPosY],[gx,gy])
+                if(nodesExplored[s].cost > currentNode.costToCome + distance([newState[0],newState[1]],[x,y]) + distance([newState[0],newState[1]],[gx,gy])):
+                    nodesExplored[s].costToCome = currentNode.costToCome + distance([newState[0],newState[1]],[x,y]) 
+                    nodesExplored[s].cost = nodesExplored[s].costToCome  + distance([newState[0],newState[1]],[gx,gy])
                     nodesExplored[s].parent = currentNode
                     
     return  [False,None] 
